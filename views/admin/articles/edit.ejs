@@ -1,0 +1,46 @@
+<%- include ('../../partials/header.ejs') %>
+<%- include ('../../partials/navbar.ejs') %>
+
+<div class="container">
+    <hr>
+    <div class="card">
+        <div class="card-header">
+            <h2>Editar Artigo</h2>
+        </div>
+        <div class="card-body">
+            <form action="/articles/update" method="POST">
+                <input type="hidden" value="<%= article.id %>" name="id">
+                <input value="<%= article.title %>" class="form-control" type="text" name="title" id="" placeholder="Digite o titulo do artigo">
+               <br> <textarea class="form-control" name="body" id="article" cols="30" rows="10">
+                   
+            <div id="conteudo">
+                 <%- article.body %>
+            </div>
+
+               </textarea><br>
+               <label for="">Artigo</label> <br>
+               <select name="category" id="" class="form-control">
+                <% categories.forEach(category => { %>
+                    <option value="<%= category.id %>"><%= category.title %></option>
+               <% }) %>
+               </select><br>
+               <button class="btn btn-dark">Editar</button>
+            </form>
+        </div>
+        
+    </div>
+
+</div>
+
+
+<%- include ('../../partials/footer.ejs') %>
+<script src="/tinymce/tinymce.min.js"></script>
+<script>
+    tinymce.init({
+        selector: "#article",
+        plugins: [
+            'advlist autolink link  image lists print preview hr searchreplace wordcount fullscreen insertdatetime media save table paste emoticons',
+        ],
+        language: 'pt_BR'
+    })
+</script>
